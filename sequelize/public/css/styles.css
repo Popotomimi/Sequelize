@@ -1,0 +1,105 @@
+* {
+  font-family: Helvetica;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-bottom: 250px;
+}
+
+#navbar {
+  border-bottom: 1px solid #ccc;
+  padding: 1.5em;
+  margin-bottom: 1em;
+  background-color: #222;
+}
+
+#navbar ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+#navbar a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+}
+
+a {
+  padding: 15px;
+  text-decoration: none;
+  color: #222;
+  transform: 0.5s;
+  transition: 0.5s;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+a:hover {
+  background-color: #ccc;
+  color: #222;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+.form {
+  width: 550px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+
+.form-checkbox {
+  flex-direction: row;
+}
+
+.form-checkbox input {
+  margin-right: 10px;
+}
+
+.form-control input {
+  padding: 5px;
+  border: #222 2px solid;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.form-control input::placeholder {
+  color: #c3c3c3;
+  font-weight: 700;
+}
+
+.btn-submit {
+  padding: 15px;
+  background-color: #222;
+  color: #fff;
+  transform: 0.5s;
+  transition: 0.5s;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #ccc;
+  color: #222;
+}
