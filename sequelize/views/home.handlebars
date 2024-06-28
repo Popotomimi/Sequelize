@@ -1,1 +1,18 @@
-<h1>Olá Sequelize</h1>
+<h1>Usuários cadastrados:</h1>
+<div class="container">
+  {{#each users}}
+    <div class="item">
+      <label>Nome:</label>
+      <h2>{{this.name}}</h2>
+      <label>Profissão:</label>
+      <h4>{{this.occupation}}</h4>
+      <div class="actions">
+        <a href="/users/{{this.id}}">Ver detalhes</a>
+        <a href="/users/edit/{{this.id}}">Editar</a>
+        <form action="/users/delete/{{this.id}}" method="post">
+          <input type="submit" value="Excluir" class="btn-submit" />
+        </form>
+      </div>
+    </div>
+  {{/each}}
+</div>
