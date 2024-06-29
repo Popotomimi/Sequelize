@@ -4,6 +4,7 @@ const conn = require("./db/conn.js");
 const port = 3000;
 
 const User = require("./models/User.js");
+const Address = require("./models/Address.js");
 
 const app = express();
 
@@ -59,9 +60,13 @@ app.post("/users/delete/:id", async (req, res) => {
 app.get("/users/edit/:id", async (req, res) => {
   const id = req.params.id;
 
-  const user = await User.findOne({ raw: true, where: { id: id } });
+  try {
+    const user = await User.findOne({ include: Address, where: { id: id } });
 
-  res.render("useredit", { user });
+    res.render("useredit", { user: user.get({ plain: true }) });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.post("/users/update", async (req, res) => {
@@ -88,6 +93,36 @@ app.post("/users/update", async (req, res) => {
   res.redirect("/");
 });
 
+app.post("/address/create", async (req, res) => {
+  const UserId = req.body.UserId;
+  const street = req.body.street;
+  const number = req.body.number;
+  const city = req.body.city;
+  const complement = req.body.complement;
+
+  const address = {
+    UserId: UserId,
+    street: street,
+    number: number,
+    city: city,
+    complement: complement,
+  };
+
+  await Address.create(address);
+
+  res.redirect(`/`);
+});
+
+app.post("/address/delete", async (req, res) => {
+  const id = req.body.id;
+
+  await Address.destroy({
+    where: { id: id },
+  });
+
+  res.redirect("/");
+});
+
 app.get("/", async (req, res) => {
   const users = await User.findAll({ raw: true });
 
@@ -97,7 +132,7 @@ app.get("/", async (req, res) => {
 });
 
 conn
-  //.sync({ force: true })
+  //.sync({ force: true }) força a criação do banco e exclui tudo que tem nele e cria um novo
   .sync()
   .then(() => {
     app.listen(port);
